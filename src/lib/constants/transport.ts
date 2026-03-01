@@ -1,0 +1,31 @@
+export const TRANSPORT_LINES = {
+    lrt1: [
+        "Taft Avenue",
+        "Epifanio de los Santos Avenue",
+        "Rizal Avenue",
+        "Legarda",
+        "Recto Avenue",
+        "C.M. Recto Avenue",
+    ],
+    lrt2: [
+        "Aurora Boulevard",
+        "Marcos Highway",
+        "Magsaysay Boulevard",
+        "Legarda",
+        "Recto Avenue",
+        "Katipunan Avenue",
+        "Santolan",
+    ],
+    mrt3: [
+        "EDSA",
+        "Epifanio de los Santos Avenue",
+        "Shaw Boulevard",
+        "Boni Avenue",
+        "Guadalupe",
+        "Buendia",
+        "Gil Puyat Avenue",
+        "Taft Avenue",
+        "Quirino Avenue",
+        "Libertad",
+    ],
+};
