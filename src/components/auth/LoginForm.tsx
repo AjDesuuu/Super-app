@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { authenticateUser, type User } from "@/data/users";
+import trainLogo from "/train.svg";
 
 interface LoginFormProps {
     onLogin: (user: User) => void;
@@ -60,7 +61,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
                 <CardHeader className="pt-8 pb-4">
                     <div className="flex justify-center mb-4">
                         <div className="p-3 bg-blue-600/10 rounded-2xl">
-                            <img src="/train.svg" alt="NexStation Logo" className="h-10 w-10" />
+                            <img src={trainLogo} alt="NexStation Logo" className="h-10 w-10" />
                         </div>
                     </div>
                     <CardTitle className="text-xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
