@@ -170,7 +170,7 @@ const getCachedRoutePolyline = (routeId: string): [number, number][] => {
                     size="sm"
                     onClick={() => setSelectedStatus(status)}
                   >
-                    {busStatusConfig[status].icon} {busStatusConfig[status].label}
+                    {busStatusConfig[status].label}
                   </Button>
                 ))}
               </div>
@@ -277,7 +277,7 @@ const getCachedRoutePolyline = (routeId: string): [number, number][] => {
                   busStatusConfig[selectedBus.status].color,
                   "text-white"
                 )}>
-                  {busStatusConfig[selectedBus.status].icon} {busStatusConfig[selectedBus.status].label}
+                  {busStatusConfig[selectedBus.status].label}
                 </Badge>
                 {selectedBus.delayMinutes > 0 && (
                   <Badge variant="outline" className="text-orange-600 border-orange-300">

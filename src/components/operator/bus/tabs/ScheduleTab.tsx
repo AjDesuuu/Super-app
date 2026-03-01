@@ -1,9 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Clock, AlertCircle, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Card } from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -34,13 +32,10 @@ export default function ScheduleTab() {
 
   // Timer tracking for each trip
   const [tripTimers, setTripTimers] = useState<Record<string, number>>({});
-  const [lastUpdate, setLastUpdate] = useState(Date.now());
 
   // Consolidated update logic - runs every 2 seconds instead of 1
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = Date.now();
-      setLastUpdate(now);
       
       setTrips(prevTrips => {
         let hasChanges = false;

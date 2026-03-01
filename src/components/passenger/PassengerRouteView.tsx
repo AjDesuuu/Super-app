@@ -85,7 +85,7 @@ export default function PassengerRouteView({
     );
 
     // Use custom hook for route consolidation logic
-    const { consolidatedSteps, getTransportMode } = useRouteConsolidation(
+    const { consolidatedSteps } = useRouteConsolidation(
         routeData?.steps,
         endLocation?.name,
         endLocation?.coordinates

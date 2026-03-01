@@ -310,7 +310,6 @@ export default function PassengerDashboard({ onLogout }: PassengerDashboardProps
                 }, {} as Record<string, typeof mockStations>);
 
                 const lines = Object.keys(stationsByLine);
-                const selectedLine = station?.line || "MRT-3";
 
                 return (
                     <div className="p-4 space-y-4">
