@@ -1,14 +1,36 @@
 import { useState, useEffect } from "react";
-import { AlertTriangle, CheckCircle, Clock, Radio, Zap, ChevronDown, ChevronUp, Plus, AlertOctagon } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle,
+  Clock,
+  Radio,
+  Zap,
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  AlertOctagon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Mock data
 const mockStations = [
@@ -104,8 +126,11 @@ function PendingAlertCard({ alert }: { alert: Alert }) {
   return (
     <Card className="bg-yellow-500/5 border-yellow-500/30">
       <CardContent className="pt-4 space-y-3">
-        <Progress value={progress} className="h-1 bg-yellow-500/20 [&>div]:bg-yellow-500" />
-        
+        <Progress
+          value={progress}
+          className="h-1 bg-yellow-500/20 [&>div]:bg-yellow-500"
+        />
+
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-2">
             <div className="p-1.5 rounded-full bg-yellow-500 animate-pulse">
@@ -116,7 +141,10 @@ function PendingAlertCard({ alert }: { alert: Alert }) {
               <p className="text-xs text-muted-foreground">{alert.message}</p>
             </div>
           </div>
-          <Badge variant="outline" className="text-yellow-600 border-yellow-500/50">
+          <Badge
+            variant="outline"
+            className="text-yellow-600 border-yellow-500/50"
+          >
             {countdown}s
           </Badge>
         </div>
@@ -133,13 +161,18 @@ function ImpactAnalysis({ alert }: { alert: Alert }) {
     <Card className="border-blue-500/30">
       <CardContent className="pt-4 space-y-3">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-semibold">Impact on {stations.length} stations</p>
+          <p className="text-sm font-semibold">
+            Impact on {stations.length} stations
+          </p>
           <p className="text-sm text-orange-600">+{totalDelay}min total</p>
         </div>
 
         <div className="space-y-2">
           {stations.map((station) => (
-            <div key={station.name} className="flex items-center justify-between p-2 rounded-lg bg-muted/50">
+            <div
+              key={station.name}
+              className="flex items-center justify-between p-2 rounded-lg bg-muted/50"
+            >
               <p className="text-sm">{station.name}</p>
               <div className="flex gap-3 text-xs">
                 <span className="text-orange-600">+{station.delay}min</span>
@@ -164,11 +197,27 @@ function ActiveAlertCard({
   onToggleExpand: () => void;
   onResolve: () => void;
 }) {
-  const config = alert.severity === "critical"
-    ? { color: "text-red-500", bgColor: "bg-red-500/10", borderColor: "border-red-500/30", iconBg: "bg-red-500" }
-    : alert.severity === "high"
-    ? { color: "text-orange-500", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/30", iconBg: "bg-orange-500" }
-    : { color: "text-amber-500", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/30", iconBg: "bg-amber-500" };
+  const config =
+    alert.severity === "critical"
+      ? {
+          color: "text-red-500",
+          bgColor: "bg-red-500/10",
+          borderColor: "border-red-500/30",
+          iconBg: "bg-red-500",
+        }
+      : alert.severity === "high"
+        ? {
+            color: "text-orange-500",
+            bgColor: "bg-orange-500/10",
+            borderColor: "border-orange-500/30",
+            iconBg: "bg-orange-500",
+          }
+        : {
+            color: "text-amber-500",
+            bgColor: "bg-amber-500/10",
+            borderColor: "border-amber-500/30",
+            iconBg: "bg-amber-500",
+          };
 
   const alertTypeConfig = ALERT_TYPES.find((t) => t.type === alert.type);
   const ActionIcon = alertTypeConfig?.icon || Clock;
@@ -183,23 +232,42 @@ function ActiveAlertCard({
                 <AlertTriangle className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className={cn("font-semibold text-sm", config.color)}>{alert.station}</p>
+                <p className={cn("font-semibold text-sm", config.color)}>
+                  {alert.station}
+                </p>
                 <p className="text-xs text-muted-foreground">{alert.message}</p>
                 {alert.description && (
-                  <p className="text-xs text-muted-foreground mt-1 italic">"{alert.description}"</p>
+                  <p className="text-xs text-muted-foreground mt-1 italic">
+                    "{alert.description}"
+                  </p>
                 )}
               </div>
             </div>
-            <Badge variant="outline" className="text-xs">{alert.timestamp}</Badge>
+            <Badge variant="outline" className="text-xs">
+              {alert.timestamp}
+            </Badge>
           </div>
 
-          <Button onClick={onResolve} className={cn("w-full", config.iconBg, "hover:opacity-90")} size="lg">
+          <Button
+            onClick={onResolve}
+            className={cn("w-full", config.iconBg, "hover:opacity-90")}
+            size="lg"
+          >
             <ActionIcon className="h-4 w-4" />
             {alert.actionLabel}
           </Button>
 
-          <Button variant="outline" size="sm" onClick={onToggleExpand} className="w-full">
-            {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onToggleExpand}
+            className="w-full"
+          >
+            {isExpanded ? (
+              <ChevronUp className="h-4 w-4" />
+            ) : (
+              <ChevronDown className="h-4 w-4" />
+            )}
             {isExpanded ? "Hide" : "View"} Impact
           </Button>
         </CardContent>
@@ -220,8 +288,12 @@ function ResolvedAlertCard({ alert }: { alert: Alert }) {
       <CardContent className="pt-3">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium">{alert.station} - {alert.message}</p>
-            <p className="text-xs text-muted-foreground">Resolved at {alert.timestamp}</p>
+            <p className="text-sm font-medium">
+              {alert.station} - {alert.message}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Resolved at {alert.timestamp}
+            </p>
           </div>
           <CheckCircle className="h-5 w-5 text-green-500" />
         </div>
@@ -238,8 +310,10 @@ export default function AlertsTab() {
   const [reportDialogOpen, setReportDialogOpen] = useState(false);
 
   const generateRandomAlert = (): Alert => {
-    const station = mockStations[Math.floor(Math.random() * mockStations.length)];
-    const alertType = ALERT_TYPES[Math.floor(Math.random() * ALERT_TYPES.length)];
+    const station =
+      mockStations[Math.floor(Math.random() * mockStations.length)];
+    const alertType =
+      ALERT_TYPES[Math.floor(Math.random() * ALERT_TYPES.length)];
     const now = new Date();
 
     return {
@@ -249,7 +323,10 @@ export default function AlertsTab() {
       station: station.name,
       line: station.line,
       message: alertType.message,
-      timestamp: now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
+      timestamp: now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
       status: "pending",
       triggeredAt: Date.now(),
       actionLabel: alertType.actionLabel,
@@ -277,11 +354,14 @@ export default function AlertsTab() {
       const now = Date.now();
       setAlerts((prev) =>
         prev.map((alert) => {
-          if (alert.status === "pending" && now - alert.triggeredAt >= PENDING_DURATION) {
+          if (
+            alert.status === "pending" &&
+            now - alert.triggeredAt >= PENDING_DURATION
+          ) {
             return { ...alert, status: "active" };
           }
           return alert;
-        })
+        }),
       );
     }, CHECK_INTERVAL);
 
@@ -289,7 +369,9 @@ export default function AlertsTab() {
   }, []);
 
   const handleAlertAction = (alertId: string) => {
-    setAlerts((prev) => prev.map((a) => (a.id === alertId ? { ...a, status: "resolved" } : a)));
+    setAlerts((prev) =>
+      prev.map((a) => (a.id === alertId ? { ...a, status: "resolved" } : a)),
+    );
     if (expandedIncident === alertId) {
       setExpandedIncident(null);
     }
@@ -299,21 +381,26 @@ export default function AlertsTab() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const now = new Date();
-    
+
     const newAlert: Alert = {
       id: `manual-${Date.now()}-${Math.random()}`,
       type: "manual_incident",
       severity: formData.get("severity") as "critical" | "high" | "medium",
       station: formData.get("station") as string,
-      line: mockStations.find(s => s.name === formData.get("station"))?.line || "Unknown",
+      line:
+        mockStations.find((s) => s.name === formData.get("station"))?.line ||
+        "Unknown",
       message: `${formData.get("incidentType")}: Operator reported incident`,
-      timestamp: now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
+      timestamp: now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
       status: "active",
       triggeredAt: Date.now(),
       actionLabel: "Acknowledge & Respond",
       description: formData.get("description") as string,
     };
-    
+
     setAlerts((prev) => [newAlert, ...prev]);
     setAlertCounter((prev) => prev + 1);
     setReportDialogOpen(false);
@@ -358,7 +445,7 @@ export default function AlertsTab() {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="incidentType">Incident Type</Label>
                   <Select name="incidentType" required>
@@ -391,33 +478,39 @@ export default function AlertsTab() {
 
                 <div className="space-y-2">
                   <Label htmlFor="description">Description</Label>
-                  <Textarea 
-                    id="description" 
-                    name="description" 
+                  <Textarea
+                    id="description"
+                    name="description"
                     placeholder="Provide details about the incident..."
                     rows={3}
                     required
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-red-500 hover:bg-red-600">
+                <Button
+                  type="submit"
+                  className="w-full bg-red-500 hover:bg-red-600"
+                >
                   <AlertOctagon className="h-4 w-4 mr-2" />
                   Submit Report
                 </Button>
               </form>
             </DialogContent>
           </Dialog>
-          
+
           <Badge variant="destructive" className="gap-2">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            LIVE {alertCounter > 0 && <span className="ml-1">({alertCounter})</span>}
+            LIVE{" "}
+            {alertCounter > 0 && <span className="ml-1">({alertCounter})</span>}
           </Badge>
         </div>
       </div>
 
       {pendingAlerts.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold text-yellow-600">Pending ({pendingAlerts.length})</h3>
+          <h3 className="text-sm font-semibold text-yellow-600">
+            Pending ({pendingAlerts.length})
+          </h3>
           {pendingAlerts.map((alert) => (
             <PendingAlertCard key={alert.id} alert={alert} />
           ))}
@@ -435,7 +528,11 @@ export default function AlertsTab() {
               key={alert.id}
               alert={alert}
               isExpanded={expandedIncident === alert.id}
-              onToggleExpand={() => setExpandedIncident(expandedIncident === alert.id ? null : alert.id)}
+              onToggleExpand={() =>
+                setExpandedIncident(
+                  expandedIncident === alert.id ? null : alert.id,
+                )
+              }
               onResolve={() => handleAlertAction(alert.id)}
             />
           ))}
@@ -448,8 +545,12 @@ export default function AlertsTab() {
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-green-500" />
               <div>
-                <p className="font-semibold text-green-700 dark:text-green-300">All Clear</p>
-                <p className="text-xs text-muted-foreground">System monitoring continues</p>
+                <p className="font-semibold text-green-700 dark:text-green-300">
+                  All Clear
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  System monitoring continues
+                </p>
               </div>
             </div>
           </CardContent>
@@ -458,7 +559,9 @@ export default function AlertsTab() {
 
       {resolvedAlerts.length > 0 && (
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold text-green-600">Resolved ({resolvedAlerts.length})</h3>
+          <h3 className="text-sm font-semibold text-green-600">
+            Resolved ({resolvedAlerts.length})
+          </h3>
           {resolvedAlerts.slice(0, 3).map((alert) => (
             <ResolvedAlertCard key={alert.id} alert={alert} />
           ))}
