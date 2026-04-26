@@ -6,6 +6,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Global design tokens and theme variables */
 :root {
   /* Design tokens — NexPath brand palette */
   --background: #ffffff; /* White */
