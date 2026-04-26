@@ -279,7 +279,7 @@ export default function PassengerDashboard({
               </Card>
             ))}
             <p className="text-xs text-center text-muted-foreground mt-4">
-              Powered by NexStation Ads
+              Powered by NexPath Ads
             </p>
           </div>
         );
@@ -630,7 +630,7 @@ export default function PassengerDashboard({
       <header className="border-b bg-card flex-shrink-0">
         <div className="px-4 py-3 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-blue-600">NexStation</h1>
+            <h1 className="text-xl font-bold text-[#E9406B]">NexPath</h1>
             <p className="text-xs text-muted-foreground">
               Your journey starts here
             </p>
@@ -640,7 +640,7 @@ export default function PassengerDashboard({
               variant="ghost"
               size="icon"
               onClick={onLogout}
-              className="text-muted-foreground hover:text-blue-600"
+              className="text-muted-foreground hover:text-[#E9406B]"
             >
               <LogOut className="h-5 w-5" />
             </Button>
@@ -664,12 +664,12 @@ export default function PassengerDashboard({
                 className={cn(
                   "flex flex-col items-center justify-center py-1 px-3 rounded-lg transition-all w-full",
                   isActive
-                    ? "text-blue-600 bg-blue-50"
+                    ? "text-[#E9406B] bg-[#E9406B]/10"
                     : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                 )}
               >
                 <Icon
-                  className={cn("h-5 w-5 mb-1", isActive && "text-blue-600")}
+                  className={cn("h-5 w-5 mb-1", isActive && "text-[#E9406B]")}
                 />
                 <span className="text-[10px] font-medium">{tab.label}</span>
               </button>

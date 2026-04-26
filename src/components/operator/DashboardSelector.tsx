@@ -1,26 +1,29 @@
-import { Train, Bus, ArrowRight, LogOut } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Train, Bus, ArrowRight, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface DashboardSelectorProps {
   onLogout?: () => void;
-  onSelectDashboard?: (type: 'rail' | 'bus') => void;
+  onSelectDashboard?: (type: "rail" | "bus") => void;
 }
 
-export default function DashboardSelector({ onLogout, onSelectDashboard }: DashboardSelectorProps) {
+export default function DashboardSelector({
+  onLogout,
+  onSelectDashboard,
+}: DashboardSelectorProps) {
   const handleRailClick = () => {
-    onSelectDashboard?.('rail');
+    onSelectDashboard?.("rail");
   };
 
   const handleBusClick = () => {
-    onSelectDashboard?.('bus');
+    onSelectDashboard?.("bus");
   };
 
   return (
     <div className="h-[95vh] w-[430px] bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col overflow-hidden">
       {/* Header with Logout */}
       <div className="flex items-center justify-between p-4 pb-2">
-        <h1 className="text-xl font-bold text-gray-900">NexStation</h1>
+        <h1 className="text-xl font-bold text-[#E9406B]">NexPath</h1>
         {onLogout && (
           <Button
             variant="outline"
@@ -36,7 +39,9 @@ export default function DashboardSelector({ onLogout, onSelectDashboard }: Dashb
 
       <div className="flex-1 px-4 pb-4 space-y-4 overflow-y-auto">
         {/* Subtitle */}
-        <p className="text-sm text-gray-600 text-center">Operator Dashboard Management</p>
+        <p className="text-sm text-gray-600 text-center">
+          Operator Dashboard Management
+        </p>
 
         {/* Dashboard Cards - Stacked vertically */}
         <div className="space-y-4">
@@ -55,15 +60,14 @@ export default function DashboardSelector({ onLogout, onSelectDashboard }: Dashb
               <CardTitle className="text-lg mt-2">Rail Operator</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-
               <div className="space-y-1.5 mb-4 -mt-4">
                 <div className="flex items-center text-xs text-gray-500">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2" />
                   53 Stations Monitored
                 </div>
                 <div className="flex items-center text-xs text-gray-500">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2" />
-                  3 Train Lines (LRT-1, LRT-2, MRT-3)
+                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2" />3
+                  Train Lines (LRT-1, LRT-2, MRT-3)
                 </div>
                 <div className="flex items-center text-xs text-gray-500">
                   <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2" />
@@ -71,7 +75,10 @@ export default function DashboardSelector({ onLogout, onSelectDashboard }: Dashb
                 </div>
               </div>
 
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700 font-bold" size="sm">
+              <Button
+                className="w-full bg-emerald-600 hover:bg-emerald-700 font-bold"
+                size="sm"
+              >
                 Open Rail Dashboard
               </Button>
             </CardContent>
@@ -92,15 +99,14 @@ export default function DashboardSelector({ onLogout, onSelectDashboard }: Dashb
               <CardTitle className="text-lg mt-2">Bus Operator</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-
               <div className="space-y-1.5 mb-4 -mt-4">
                 <div className="flex items-center text-xs text-gray-500">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2" />
                   20 Buses Active
                 </div>
                 <div className="flex items-center text-xs text-gray-500">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2" />
-                  4 Routes (PITX ↔ Cubao, Fairview)
+                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2" />4
+                  Routes (PITX ↔ Cubao, Fairview)
                 </div>
                 <div className="flex items-center text-xs text-gray-500">
                   <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2" />
@@ -108,7 +114,10 @@ export default function DashboardSelector({ onLogout, onSelectDashboard }: Dashb
                 </div>
               </div>
 
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700 font-bold" size="sm">
+              <Button
+                className="w-full bg-emerald-600 hover:bg-emerald-700 font-bold"
+                size="sm"
+              >
                 Open Bus Dashboard
               </Button>
             </CardContent>

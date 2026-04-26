@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { authenticateUser, type User } from "@/data/users";
+import nexPathLogo from "@/assets/nexpath.svg";
 
 interface LoginFormProps {
   onLogin: (user: User) => void;
@@ -29,20 +30,29 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
+  const defaultCredentials: Record<
+    string,
+    { email: string; password: string }
+  > = {
+    passenger: { email: "passenger1@nexstation.com", password: "1" },
+    operator: { email: "operator1@nexstation.com", password: "operator123" },
+    lgu: { email: "marikinalgu@nexstation.com", password: "marikina" },
+    admin: { email: "admin@nexstation.com", password: "admin123" },
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
-    const { email, password } = formData;
+    const email = formData.email || defaultCredentials[loginType].email;
+    const password =
+      formData.password || defaultCredentials[loginType].password;
 
-    // Use the authenticateUser function from users.ts
     const user = authenticateUser(email, password, loginType);
 
     if (user) {
-      // Successfully authenticated
       onLogin(user);
     } else {
-      // Authentication failed
       setError("Invalid credentials. Please try again.");
     }
   };
@@ -55,23 +65,20 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="h-[95vh] w-[430px] flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-6">
+    <div className="h-[95vh] w-[430px] flex items-center justify-center bg-gradient-to-br from-[#FDF6BF] to-[#F0A6B0]/30 dark:from-slate-950 dark:to-slate-900 p-6">
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="pt-8 pb-4">
           <div className="flex justify-center mb-4">
-            <div className="p-3 bg-blue-600/10 rounded-2xl">
-              <svg
-                className="h-10 w-10 text-blue-600"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z" />
-              </svg>
+            <div className="p-2 bg-white rounded-2xl shadow-md border border-[#F0A6B0]/30">
+              <img
+                src={nexPathLogo}
+                className="h-20 w-20 object-contain"
+                alt="NexPath Logo"
+              />
             </div>
           </div>
-          <CardTitle className="text-xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-            NexStation
+          <CardTitle className="text-xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#E9406B] to-[#F68B9B]">
+            NexPath
           </CardTitle>
           <CardDescription className="text-center text-xs font-medium">
             Welcome Back • Sign in to your journey
@@ -86,7 +93,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               className={cn(
                 "rounded-md px-1 py-2 text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-tight sm:tracking-normal transition-all whitespace-nowrap",
                 loginType === "passenger"
-                  ? "bg-white dark:bg-slate-950 text-blue-600 shadow-sm"
+                  ? "bg-white dark:bg-slate-950 text-[#E9406B] shadow-sm"
                   : "text-slate-500 hover:text-slate-900",
               )}
             >
@@ -98,7 +105,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               className={cn(
                 "rounded-md px-1 py-2 text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-tight sm:tracking-normal transition-all whitespace-nowrap",
                 loginType === "operator"
-                  ? "bg-white dark:bg-slate-950 text-emerald-600 shadow-sm"
+                  ? "bg-white dark:bg-slate-950 text-[#F68B9B] shadow-sm"
                   : "text-slate-500 hover:text-slate-900",
               )}
             >
@@ -110,7 +117,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               className={cn(
                 "rounded-md px-1 py-2 text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-tight sm:tracking-normal transition-all whitespace-nowrap",
                 loginType === "lgu"
-                  ? "bg-white dark:bg-slate-950 text-indigo-600 shadow-sm"
+                  ? "bg-white dark:bg-slate-950 text-[#F0A6B0] shadow-sm"
                   : "text-slate-500 hover:text-slate-900",
               )}
             >
@@ -157,7 +164,6 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
                 }
                 value={formData.email}
                 onChange={handleInputChange}
-                required
                 className="h-9 text-sm"
               />
             </div>
@@ -182,7 +188,6 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleInputChange}
-                  required
                   className="h-9 text-sm pr-9"
                 />
                 <button
@@ -209,12 +214,12 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
               type="submit"
               className={`w-full font-bold ${
                 loginType === "admin"
-                  ? "bg-red-600 hover:bg-red-700"
+                  ? "bg-[#E9406B] hover:bg-[#d13560]"
                   : loginType === "lgu"
-                    ? "bg-indigo-600 hover:bg-indigo-700"
+                    ? "bg-[#F0A6B0] hover:bg-[#e890a0] text-slate-800"
                     : loginType === "operator"
-                      ? "bg-emerald-600 hover:bg-emerald-700"
-                      : "bg-blue-600 hover:bg-blue-700"
+                      ? "bg-[#F68B9B] hover:bg-[#e07086] text-slate-800"
+                      : "bg-[#E9406B] hover:bg-[#d13560]"
               }`}
               size="sm"
             >
