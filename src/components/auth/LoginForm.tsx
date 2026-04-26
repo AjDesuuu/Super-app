@@ -65,7 +65,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   };
 
   return (
-    <div className="h-[95vh] w-[430px] flex items-center justify-center bg-gradient-to-br from-[#FDF6BF] to-[#F0A6B0]/30 dark:from-slate-950 dark:to-slate-900 p-6">
+    <div className="h-[95vh] w-[430px] flex items-center justify-center bg-white dark:from-slate-950 dark:to-slate-900 p-6">
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="pt-8 pb-4">
           <div className="flex justify-center mb-4">
